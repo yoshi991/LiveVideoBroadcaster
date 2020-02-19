@@ -31,7 +31,7 @@ import io.antmedia.android.broadcaster.encoder.gles.EglCore;
 import io.antmedia.android.broadcaster.encoder.gles.FullFrameRect;
 import io.antmedia.android.broadcaster.encoder.gles.Texture2dProgram;
 import io.antmedia.android.broadcaster.encoder.gles.WindowSurface;
-import io.antmedia.android.broadcaster.network.IMediaMuxer;
+import io.antmedia.android.broadcaster.network.MediaMuxer;
 
 /**
  * Encode a movie from frames rendered from an external texture image.
@@ -105,11 +105,11 @@ public class TextureMovieEncoder implements Runnable {
         final int mHeight;
         final int mBitRate;
         final EGLContext mEglContext;
-        final IMediaMuxer writerHandler;
+        final MediaMuxer writerHandler;
         final Texture2dProgram.ProgramType mProgramType;
         public int mFrameRate;
 
-        public EncoderConfig(IMediaMuxer handler, int width, int height, int bitRate, int frameRate,
+        public EncoderConfig(MediaMuxer handler, int width, int height, int bitRate, int frameRate,
                              EGLContext sharedEglContext, Texture2dProgram.ProgramType programType) {
             writerHandler = handler;
             mWidth = width;
@@ -456,7 +456,7 @@ public class TextureMovieEncoder implements Runnable {
     }
 
     private void prepareEncoder(EGLContext sharedContext, int width, int height, int bitRate, int frameRate,
-                                IMediaMuxer writerHandle, Texture2dProgram.ProgramType programType)
+                                MediaMuxer writerHandle, Texture2dProgram.ProgramType programType)
             throws IllegalStateException
     {
         try {

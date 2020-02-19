@@ -19,7 +19,7 @@ import javax.microedition.khronos.opengles.GL10;
 import io.antmedia.android.broadcaster.CameraHandler;
 import io.antmedia.android.broadcaster.encoder.gles.FullFrameRect;
 import io.antmedia.android.broadcaster.encoder.gles.Texture2dProgram;
-import io.antmedia.android.broadcaster.network.IMediaMuxer;
+import io.antmedia.android.broadcaster.network.MediaMuxer;
 
 /**
  * Renderer object for our GLSurfaceView.
@@ -53,7 +53,7 @@ public class CameraSurfaceRenderer implements GLSurfaceView.Renderer {
     private boolean mIncomingSizeUpdated;
     private int mIncomingWidth;
     private int mIncomingHeight;
-    private IMediaMuxer mWriterHandler;
+    private MediaMuxer mWriterHandler;
     private long mRecordingStartTime;
     private int bitrate;
     private int frameRate = 25;
@@ -318,7 +318,7 @@ public class CameraSurfaceRenderer implements GLSurfaceView.Renderer {
         GLES20.glDisable(GLES20.GL_SCISSOR_TEST);
     }
 
-    public void setOptions(IMediaMuxer writerHandler) {
+    public void setOptions(MediaMuxer writerHandler) {
         mWriterHandler = writerHandler;
     }
 

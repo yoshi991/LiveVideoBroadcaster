@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import io.antmedia.android.broadcaster.network.IMediaMuxer;
+import io.antmedia.android.broadcaster.network.MediaMuxer;
 
 /**
  * Created by faraklit on 03.02.2016.
@@ -23,7 +23,7 @@ public class AudioEncoder extends Thread {
     private ByteBuffer[] mAudioInputBuffers;
     private ByteBuffer[] mAudioOutputBuffers;
     private MediaCodec mAudioEncoder;
-    private IMediaMuxer mMuxerHandler;
+    private MediaMuxer mMuxerHandler;
     private Map<Integer, Object> reservedBuffers = new HashMap<Integer, Object>();
     private static int roundTimes;
     private static long roundOffset;
@@ -36,7 +36,7 @@ public class AudioEncoder extends Thread {
      * @param bitrate  recommended setting is 64000
      * @return
      */
-    public boolean startAudioEncoder(int sampleRate, int channelCount, int bitrate, int maxInputSize, IMediaMuxer muxerHandler) {
+    public boolean startAudioEncoder(int sampleRate, int channelCount, int bitrate, int maxInputSize, MediaMuxer muxerHandler) {
         mMuxerHandler = muxerHandler;
         MediaFormat audioFormat = MediaFormat.createAudioFormat(AUDIO_MIME_TYPE, sampleRate, channelCount);
         audioFormat.setInteger(

@@ -40,7 +40,7 @@ import io.antmedia.android.broadcaster.encoder.AudioHandler;
 import io.antmedia.android.broadcaster.encoder.CameraSurfaceRenderer;
 import io.antmedia.android.broadcaster.encoder.TextureMovieEncoder;
 import io.antmedia.android.broadcaster.encoder.VideoEncoderCore;
-import io.antmedia.android.broadcaster.network.IMediaMuxer;
+import io.antmedia.android.broadcaster.network.MediaMuxer;
 import io.antmedia.android.broadcaster.network.RTMPStreamer;
 import io.antmedia.android.broadcaster.utils.Resolution;
 import io.antmedia.android.broadcaster.utils.Utils;
@@ -54,7 +54,7 @@ public class LiveVideoBroadcaster extends Service implements ILiveVideoBroadcast
 
     private static final String TAG = LiveVideoBroadcaster.class.getSimpleName();
     private volatile static CameraProxy sCameraProxy;
-    private IMediaMuxer mRtmpStreamer;
+    private MediaMuxer mRtmpStreamer;
     private AudioRecorderThread audioThread;
     private boolean isRecording = false;
     private GLSurfaceView mGLView;
@@ -178,7 +178,7 @@ public class LiveVideoBroadcaster extends Service implements ILiveVideoBroadcast
 
             mRtmpHandlerThread = new HandlerThread("RtmpStreamerThread"); //, Process.THREAD_PRIORITY_BACKGROUND);
             mRtmpHandlerThread.start();
-            mRtmpStreamer = new RTMPStreamer(mRtmpHandlerThread.getLooper());
+            mRtmpStreamer = new RTMPStreamer();
 
             connectivityManager = (ConnectivityManager) this.getSystemService(
                     Context.CONNECTIVITY_SERVICE);

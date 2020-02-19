@@ -6,7 +6,7 @@ import android.os.Message;
 import android.util.Log;
 
 import io.antmedia.android.broadcaster.encoder.AudioEncoder;
-import io.antmedia.android.broadcaster.network.IMediaMuxer;
+import io.antmedia.android.broadcaster.network.MediaMuxer;
 
 /**
  * Created by mekya on 28/03/2017.
@@ -27,7 +27,7 @@ public class AudioHandler extends Handler {
 
     }
 
-    public boolean startAudioEncoder(IMediaMuxer muxerHandler, int sampleRate, int bufferSize) {
+    public boolean startAudioEncoder(MediaMuxer muxerHandler, int sampleRate, int bufferSize) {
         boolean result = false;
 
         audioEncoder = new AudioEncoder();

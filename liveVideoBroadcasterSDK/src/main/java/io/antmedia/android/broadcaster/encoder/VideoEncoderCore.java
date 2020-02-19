@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import io.antmedia.android.broadcaster.network.IMediaMuxer;
+import io.antmedia.android.broadcaster.network.MediaMuxer;
 
 /**
  * This class wraps up the core components used for surface-input video encoding.
@@ -47,7 +47,7 @@ public class VideoEncoderCore {
     private static final String MIME_TYPE = "video/avc";    // H.264 Advanced Video Coding
     //private int frameRate = 20;               // 20fps
     private static final int IFRAME_INTERVAL = 2;           // 2 seconds between I-frames
-    private IMediaMuxer mWriterHandler;
+    private MediaMuxer mWriterHandler;
 
     private Surface mInputSurface;
     private MediaCodec mEncoder;
@@ -59,7 +59,7 @@ public class VideoEncoderCore {
     /**
      * Configures encoder and muxer state, and prepares the input Surface.
      */
-    public VideoEncoderCore(int width, int height, int bitRate, int frameRate, IMediaMuxer writerHandler)
+    public VideoEncoderCore(int width, int height, int bitRate, int frameRate, MediaMuxer writerHandler)
             throws IOException {
         mBufferInfo = new MediaCodec.BufferInfo();
 
@@ -287,7 +287,7 @@ public class VideoEncoderCore {
 
     public void stopMuxer() {
         if (mWriterHandler != null) {
-            mWriterHandler.stopMuxer();
+            mWriterHandler.stop();
             mWriterHandler = null;
         }
     }
